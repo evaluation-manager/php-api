@@ -22,7 +22,8 @@ class GradesController{
         return [
     "id"=>$grades->id,
     "theme_id"=>$grades->theme_id,
-    "localization"=>$grades->localization,
+    "latitude"=>$grades->latitude,
+    "longitude"=>$grades->longitude,
     "grades"=>$grades->grades,
     "data"=>$grades->data,
         ];
@@ -34,7 +35,8 @@ class GradesController{
     $bodyData=Route::getJsonData();
     $grades=new GradesModel();
     $grades->theme_id=($bodyData['theme_id']);
-    $grades->localization=($bodyData['localization']);
+    $grades->latitude=($bodyData['latitude']);
+    $grades->longitude=($bodyData['longitude']);
     $grades->grades=($bodyData['grades']);
 
     $grades->save();
@@ -53,10 +55,12 @@ class GradesController{
     echo json_encode([
         'id'=> $grades->id,
         'theme_id'=>$grades->theme_id,
-        'localization'=>$grades->localization,
+        'latitude'=>$grades->latitude,
+        'longitude'=>$grades->longitude,
         'grades'=>$grades->grades,
         'data'=>$grades->data,
     ]);   
    
   }
+  
 }
