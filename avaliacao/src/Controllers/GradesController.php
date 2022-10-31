@@ -30,6 +30,7 @@ class GradesController{
    },$grades);
    echo json_encode($json);
   }  //post ainda falta
+  
   public function store(){
     //echo "Teste";
     $bodyData=Route::getJsonData();

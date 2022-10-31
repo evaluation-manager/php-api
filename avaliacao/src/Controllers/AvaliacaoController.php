@@ -12,7 +12,7 @@ class AvaliacaoController{
     http_response_code(404);
     echo json_encode([
         "status"=>404,
-        "mensagem"=>"Nehuma avalição foi encontrada"
+        "mensagem"=>"Nenhuma avalição foi encontrada"
     ]);
     exit;
    }
