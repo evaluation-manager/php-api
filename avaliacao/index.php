@@ -7,6 +7,9 @@ require __DIR__ . "/vendor/autoload.php";
 Route::init(CONF_BASE_URL);
 
 Route::controller("Source\Controllers");
+Route::get('/', function(){
+    echo 'olá mundo!';
+});
 
 Route::session("api/avaliacoes");
 

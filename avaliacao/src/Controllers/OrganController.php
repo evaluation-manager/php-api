@@ -14,7 +14,7 @@ class OrganController{
             http_response_code(404);
             echo json_encode([
                 "status"=>404,
-                "mensagem"=>"Nenhuma orgão foi encontrada"
+                "mensagem"=>"Nenhum orgão foi encontrada"
             ]);
             exit;  
         }
