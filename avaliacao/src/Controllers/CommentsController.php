@@ -68,5 +68,35 @@ class CommentsController
         ]);
 
     }
+    public function update(){
+        $routeParams=Route::getRouteParams();
+        $bodyData=Route::getJsonData();
+    
+        $comments=(new CommentsModel())->findById($routeParams['id']);
+        if(!$comments){
+            http_response_code(404);
+            echo json_encode([
+                "status"=>404,
+                "mensagem"=>"Nenhuma comentário foi encontrada foi encontrada"
+            ]);
+            exit;  
+        }
+       
+        $comments->content=($bodyData['content']);
+        $comments->name=($bodyData['name']);
+        $comments->email=($bodyData['email']);
+       
+        $comments->save();
+    
+        if($comments->fail()){
+            http_response_code(400);
+            echo json_encode([
+                "status"=>400,
+                "mensagem"=> $comments->fail()->getMessage()
+            ]);
+    
+            exit;
+        }
+      }
 
 }

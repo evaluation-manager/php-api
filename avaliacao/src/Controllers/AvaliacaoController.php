@@ -61,4 +61,35 @@ class AvaliacaoController{
    
   
   }
+  public function update(){
+    $routeParams=Route::getRouteParams();
+    $bodyData=Route::getJsonData();
+
+    $avaliacoes=(new EvaluationModel())->findById($routeParams['id']);
+    if(!$avaliacoes){
+        http_response_code(404);
+        echo json_encode([
+            "status"=>404,
+            "mensagem"=>"Nenhuma avaliação foi encontrada foi encontrada"
+        ]);
+        exit;  
+    }
+   
+    $avaliacoes->question_id=($bodyData['question_id']);
+    $avaliacoes->answer_id=($bodyData['answer_id']);
+   // $avaliacoes->grades_id=($bodyData['longitude']);
+   // $avaliacoes->grades=($bodyData['grades']);
+
+    $avaliacoes->save();
+
+    if($avaliacoes->fail()){
+        http_response_code(400);
+        echo json_encode([
+            "status"=>400,
+            "mensagem"=> $avaliacoes->fail()->getMessage()
+        ]);
+
+        exit;
+    }
+  }
 }

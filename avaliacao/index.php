@@ -20,6 +20,7 @@ Route::put("/{id}", "AvaliacaoController:update");
 //outro caminho
 Route::get("/comments", "CommentsController:index");
 Route::post("/comments", "CommentsController:store");
+Route::put("/comments/{id}", "CommentsController:update");
 
 Route::get("/grades", "GradesController:index");
 Route::post("/grades", "GradesController:store");
