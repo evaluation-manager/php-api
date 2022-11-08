@@ -23,7 +23,7 @@ Route::post("/comments", "CommentsController:store");
 
 Route::get("/grades", "GradesController:index");
 Route::post("/grades", "GradesController:store");
-//Route::put("/grades{id}", "GradesController:update");
+Route::put("/grades/{id}", "GradesController:update");
 
 Route::get("/users", "UserController:index");
 //outra caminho

@@ -64,4 +64,35 @@ class GradesController{
    
   }
   
+  public function update(){
+    $routeParams=Route::getRouteParams();
+    $bodyData=Route::getJsonData();
+
+    $grades=(new GradesModel())->findById($routeParams['id']);
+    if(!$grades){
+        http_response_code(404);
+        echo json_encode([
+            "status"=>404,
+            "mensagem"=>"Nenhuma nota foi encontrada"
+        ]);
+        exit;  
+    }
+   
+    $grades->theme_id=($bodyData['theme_id']);
+    $grades->latitude=($bodyData['latitude']);
+    $grades->longitude=($bodyData['longitude']);
+    $grades->grades=($bodyData['grades']);
+
+    $grades->save();
+
+    if($grades->fail()){
+        http_response_code(400);
+        echo json_encode([
+            "status"=>400,
+            "mensagem"=> $grades->fail()->getMessage()
+        ]);
+
+        exit;
+    }
+  }
 }
